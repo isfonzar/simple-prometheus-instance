@@ -1,0 +1,29 @@
+version: "3.0"
+
+services:
+    your_app:
+        build: build/go/.
+        ports:
+            - 80:80
+        working_dir: /go/src/app
+        command: bash -c "go run *.go && ./app"
+        volumes:
+            - ./app:/go/src/app
+        networks:
+            main:
+                aliases:
+                    - your_app
+
+    prometheus:
+        build: build/prometheus/.
+        volumes:
+            - ./data/prometheus:/prometheus
+        ports:
+            - 9090:9090
+        networks:
+            main:
+                aliases:
+                     - prometheus
+
+networks:
+    main:
