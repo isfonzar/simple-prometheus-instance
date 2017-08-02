@@ -1,10 +1,11 @@
 package main
 
 import (
-	"net/http"
-	"log"
-	"github.com/gorilla/mux"
 	"encoding/json"
+	"log"
+	"net/http"
+
+	"github.com/gorilla/mux"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
@@ -19,13 +20,13 @@ func main() {
 
 type response struct {
 	Status string
-	Code int
+	Code   int
 }
 
 func serve(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	json.NewEncoder(w).Encode(response{Status: "OK", Code: 200})
+	json.NewEncoder(w).Encode(response{Status: "OK", Code: http.StatusOK})
 
 	w.WriteHeader(http.StatusOK)
 }

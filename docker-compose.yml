@@ -6,7 +6,7 @@ services:
         ports:
             - 80:80
         working_dir: /go/src/app
-        command: bash -c "go run *.go && ./app"
+        command: bash -c "go build *.go && ./app"
         volumes:
             - ./app:/go/src/app
         networks:
